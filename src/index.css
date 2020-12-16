@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  text-decoration: none;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body {position: relative;}
+footer {position: absolute; bottom: 0; left: 0; right: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#title:hover{
+text-decoration: underline;
+}
+
+.imgFront{
+  width:100%;
+  height:300px;
+}
+
+@media screen and (max-width: 600px) {
+  .imgFront{
+    width:100%;
+    height:200px;
+  }
+}
+
+
+
+
+.app{
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
