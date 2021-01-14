@@ -188,6 +188,7 @@ const PhoneDetails=(props)=>{
                      onClose={handleClose}
                      aria-labelledby="alert-dialog-title"
                      aria-describedby="alert-dialog-description"
+                     disableBackdropClick={true}
                    >
                      <DialogTitle id="alert-dialog-title">Le smartphone {phones[id].titre} a été ajouter dans votre panier</DialogTitle>
                      <DialogActions>

@@ -79,46 +79,38 @@ const Login =()=> {
   }
 
   const  ControllEmail=()=>{
-    let i1= email.indexOf(".");
-    let i2= email.indexOf("@");
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(email.length===0){
       setEmailErr("Champ obligatoire");
       setErrorE(true);
-    }else if(i1!==-1 && i2!==-1 ){
-      if(i2<i1){
-        setEmailErr("");
+    } else if(re.test(String(email))){
+      setEmailErr("");
         setErrorE(false);
-      //  setFocusEmail(false);
-      
-      }else{
-        setEmailErr("Email incorrect il doit respecter ce format xxx@xx.xx| est de forme incorrect");
-        setErrorE(true);
-      
-      }
     }else{
-      setEmailErr("Email incorrect il doit respecter ce format xxx@xx.xx | est de forme incorrect");
+      setEmailErr("L'adresse email non valide.");
       setErrorE(true);
-      
     }
   }
 
   const ControllChangeEmail=(e)=>{
       setEmail(e.target.value); 
-      let i1= email.indexOf(".");
-      let i2= email.indexOf("@");
-    if(email.length>0 && emailErr==="Champ obligatoire"){
-      setEmailErr("");
-      setErrorE(false);
-      //setFocusEmail(false);
-    }
-    if(i1!==-1 && i2!==-1 ){
-      if(i2<i1){
+      if(email!=="" && emailErr==="Champ obligatoire"){
         setEmailErr("");
         setErrorE(false);
-        //setFocusEmail(false);}
-      }
-
-  }
+      }  
+       /* let i1= email.indexOf(".");
+        let i2= email.indexOf("@");
+      if(i1!==-1 && i2!==-1 ){
+        if(i2<i1){
+          setEmailErr("");
+          setErrorE(false);}
+        }*/
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if(re.test(String(e.target.value))){
+        setEmailErr("");
+          setErrorE(false);
+  
+    }
  }
 
 
@@ -128,11 +120,10 @@ const Login =()=> {
       setPasswordErr("Champ obligatoire");
     }else if(password.length<8){
       setErrorP(true);
-      setPasswordErr("longueur minimum du mot de passe est 8");
+      setPasswordErr("Le mots de passe doit au moins avoir 8 caractères");
     }else{
       setErrorP(false);
       setPasswordErr("");
-      //setFocusPass(false);
     }
   }
 
@@ -141,12 +132,10 @@ const Login =()=> {
     if(password.length>0 && passwordErr==="Champ obligatoire"){
       setErrorP(false);
       setPasswordErr("");
-      //setFocusPass(false);
     }
-    if(password.length>=8){
+    if(password.length>=7){
       setErrorP(false);
       setPasswordErr("");
-      //setFocusPass(false);
     }
   }  
 
@@ -173,7 +162,7 @@ const Login =()=> {
             margin="normal"
             fullWidth
             id="email"
-            label="Adresse Email*"
+            label="Adresse Email"
             name="email"
             autoComplete="email"
             value={email}
@@ -189,7 +178,7 @@ const Login =()=> {
             margin="normal"
             fullWidth
             name="password"
-            label="Mot de passe*"
+            label="Mot de passe"
             type="password"
             id="password"
             autoComplete="current-password"

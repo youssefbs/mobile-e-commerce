@@ -9,7 +9,6 @@ import 'fontsource-roboto';
 import Panier from './components/Panier';
 import PhoneDetails from './components/PhoneDetails';
 import NotFound from './components/NotFound';
-
 function App() {
   return (
     
@@ -23,12 +22,15 @@ function App() {
                <Route path="/signUp" component={SignUp}/>
                <Route path="/panier" component={Panier}/>
                <Route path="/phone/:id" component={PhoneDetails}/>
-               <Route path="/" component={NotFound} />
+               
                
            </Switch>
             
           </div>  
+          
          </Router>
+
+
       </PhoneContextProvider>
     
   );

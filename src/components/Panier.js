@@ -19,6 +19,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { makeStyles } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import {Link} from 'react-router-dom';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyle=makeStyles({
     trash:{
@@ -40,6 +43,23 @@ const Panier=()=>{
     const {suppItem,diminueQuantite,phones,ajouterPanier}=useContext(PhoneContext);
     const [stores,setStores]=useState([]);
     const [som,setSom]=useState(0);
+
+    const [open, setOpen] = useState(false);
+    const[tel,setTel]=useState({});
+
+    const handleClickOpen = (a) => {
+      setOpen(true);
+      setTel(a);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    const supp=(id)=>{
+        suppItem(tel.id);
+        handleClose();
+    }
 
     useEffect(()=>{
         const newArr=phones.filter(phone=>{
@@ -107,14 +127,15 @@ const Panier=()=>{
                                              {
                                                  store.quantiteTotal==0 && (<div style={{color:"#cc0000"}}>Stock epuisé, vous ne pourrez plus augmenter la quantite</div>)
                                              }
-                                             <Button onClick={()=>diminueQuantiteStore(store.id)}>-</Button>
+                                             <Button onClick={()=>diminueQuantiteStore(store)}>-</Button>
                                              {store.quantite}
                                              <Button onClick={()=>ajouteQuantite(store.id)}>+</Button>
                                              </TableCell>
-                                         <TableCell align="center"><DeleteIcon className={classes.trash}  onClick={()=>suppItem(store.id)}/> </TableCell>    
+                                         <TableCell align="center"><DeleteIcon className={classes.trash}  onClick={()=>handleClickOpen(store)}/> </TableCell>    
                                          <TableCell align="right">{store.prix} dinar</TableCell>
                                          <TableCell align="right">{store.quantite*store.prix} dinar</TableCell>
                         </TableRow>
+                        
     
                        ) 
                     }) 
@@ -150,6 +171,24 @@ const Panier=()=>{
                    </Link>
                 </Grid>
             </Grid>
+            <Dialog
+                     open={open}
+                     onClose={handleClose}
+                     aria-labelledby="alert-dialog-title"
+                     aria-describedby="alert-dialog-description"
+                     disableBackdropClick={true}
+                   >
+                     <DialogTitle id="alert-dialog-title">Le smartphone {tel.titre} va etre supprimer de votre panier</DialogTitle>
+                     <DialogActions>
+                       <Button onClick={handleClose} color="primary">
+                       Annuler la suppression
+                       </Button>
+
+                       <Button  onClick={()=>supp(tel.id)} color="primary" variant="contained">
+                          Confirmer la suppression
+                       </Button>
+                     </DialogActions>
+            </Dialog>
             </div>
             )
         }
@@ -169,12 +208,12 @@ const Panier=()=>{
         }
     }
         
-    const diminueQuantiteStore=(id)=>{
-        const pos=recherche(id);
+    const diminueQuantiteStore=(t)=>{
+        const pos=recherche(t.id);
         if(stores[pos].quantite>1){
-            diminueQuantite(id);
+            diminueQuantite(t.id);
         }else{
-            suppItem(id);
+            handleClickOpen(t);
         }
     }
 

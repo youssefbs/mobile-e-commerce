@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
+
 const Filter=({choix})=>{
     const classes = useStyles();
     const [filter,setFilter]=useState({
@@ -28,6 +29,7 @@ const Filter=({choix})=>{
         stockage:[],
         SE:[]
     });
+    
 
 
     const test=(e)=>{
@@ -36,17 +38,22 @@ const Filter=({choix})=>{
             if(e.target.checked){
                 if(e.target.name=="marque"){
                     newArr.marque.push(e.target.value);
+                    
                 }else if(e.target.name=="ram"){
                     newArr.ram.push(e.target.value);
+                    
                 }else if(e.target.name=="stockage"){
                     newArr.stockage.push(e.target.value);
+                    
                 }else{
                     newArr.SE.push(e.target.value);
+                    
                 }
                 setFilter(newArr);
             }else{
                 let Arr;
                 if(e.target.name=="marque"){
+                    
                     Arr=filter.marque.filter(arr=>{
                         if(arr==e.target.value){
                             return false;
@@ -55,6 +62,7 @@ const Filter=({choix})=>{
                     })
                     newArr.marque=Arr;
                 }else if(e.target.name=="ram"){
+                  
                      Arr=filter.ram.filter(arr=>{
                         if(arr==e.target.value){
                             return false;
@@ -63,6 +71,7 @@ const Filter=({choix})=>{
                     })
                     newArr.ram=Arr;
                 }else if(e.target.name=="stockage"){
+                  
                      Arr=newArr.stockage.filter(arr=>{
                         if(arr==e.target.value){
                             return false;
@@ -71,6 +80,7 @@ const Filter=({choix})=>{
                     })
                     newArr.stockage=Arr;
                 }else{
+                  
                      Arr=newArr.SE.filter(arr=>{
                         if(arr==e.target.value){
                             return false;
@@ -84,6 +94,7 @@ const Filter=({choix})=>{
             }      
         }
         choix(filter);
+       
     }
     
 
@@ -93,24 +104,24 @@ const Filter=({choix})=>{
               <FormLabel component="legend">Marque:</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox   name="marque" color="primary"  value="google"/>}
+                  control={<Checkbox   name="marque" color="primary"  value="google" onClick={test}  />}
                   label="Google"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox   name="marque" color="primary" value="SAMSUNG"/>}
+                  control={<Checkbox   name="marque" color="primary" value="SAMSUNG" onClick={test}  />}
                   label="SAMSUNG"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox  name="marque"  color="primary" value="htc"/>}
+                  control={<Checkbox  name="marque"  color="primary" value="htc" onClick={test}  />}
                   label="htc"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox  name="marque"  color="primary" value="apple"/>}
+                  control={<Checkbox  name="marque"  color="primary" value="apple" onClick={test}  />}
                   label="apple"
-                  onClick={test}
+                  
                 />
               </FormGroup>
             </FormControl>
@@ -119,19 +130,19 @@ const Filter=({choix})=>{
               <FormLabel component="legend">RAM:</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox   name="ram" color="primary" value="1"/>}
+                  control={<Checkbox   name="ram" color="primary" value="1" onClick={test}  />}
                   label="1"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox   name="ram" color="primary" value="2"/>}
+                  control={<Checkbox   name="ram" color="primary" value="2" onClick={test}  />}
                   label="2"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox  name="ram"  color="primary" value="4"/>}
+                  control={<Checkbox  name="ram"  color="primary" value="4" onClick={test}  />}
                   label="4"
-                  onClick={test}
+                  
                 />
               </FormGroup>
             </FormControl>
@@ -140,19 +151,19 @@ const Filter=({choix})=>{
               <FormLabel component="legend">Stockage:</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox   name="stockage" color="primary" value="4"/>}
+                  control={<Checkbox   name="stockage" color="primary" value="4" onClick={test}  />}
                   label="4"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox   name="stockage" color="primary" value="32"/>}
+                  control={<Checkbox   name="stockage" color="primary" value="32" onClick={test}  />}
                   label="32"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox  name="stockage"  color="primary" value="64"/>}
+                  control={<Checkbox  name="stockage"  color="primary" value="64" onClick={test}  />}
                   label="64"
-                  onClick={test}
+                 
                 />
               </FormGroup>
             </FormControl>
@@ -161,14 +172,14 @@ const Filter=({choix})=>{
               <FormLabel component="legend">Systeme d'exploitation:</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox   name="se" color="primary" value="Android"/>}
+                  control={<Checkbox   name="se" color="primary" value="Android" onClick={test}   />}
                   label="Android"
-                  onClick={test}
+                  
                 />
                 <FormControlLabel
-                  control={<Checkbox   name="se" color="primary" value="iOS"/>}
+                  control={<Checkbox   name="se" color="primary" value="iOS" onClick={test}  />}
                   label="iOS"
-                  onClick={test}
+                  
                 />
               </FormGroup>
             </FormControl>

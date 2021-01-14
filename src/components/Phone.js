@@ -110,6 +110,7 @@ const Phone=({info,ajouterPanier,diminueQuantite,suppItem})=>{
                      onClose={handleClose}
                      aria-labelledby="alert-dialog-title"
                      aria-describedby="alert-dialog-description"
+                     disableBackdropClick={true}
                    >
                      <DialogTitle id="alert-dialog-title" style={{fontSize:"10px"}}>Le smartphone {info.titre} a été ajouter dans votre panier</DialogTitle>
                      <DialogActions>

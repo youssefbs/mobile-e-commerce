@@ -11,7 +11,6 @@ import { Typography } from '@material-ui/core';
 
 
 
-
 const FrontPage=()=>{
     
     const {phones,ajouterPanier,diminueQuantite,suppItem}=useContext(PhoneContext);
@@ -71,6 +70,8 @@ const FrontPage=()=>{
 
         return true;
       });
+      
+  
       setPhonesF(newArr);
     }    
 
@@ -82,7 +83,7 @@ const FrontPage=()=>{
              <Grid container spacing={2} justify="center">
                 <Grid  item sm={5} xs={12} md={3}>
                   <Paper>
-                        <Filter choix={choix}/>
+                        <Filter choix={choix} />
                   </Paper>
                 </Grid>
                 <Grid container xs={12} sm={7} md={9}  item spacing={2} justify="center">
